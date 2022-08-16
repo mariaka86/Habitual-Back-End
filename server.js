@@ -23,3 +23,9 @@ app.use(express.urlencoded)({extended: true});
 const PORT = process.env.PORT
 mongoose.connect(process.env.MONGO_URL);
 const db = mongoose.connection
+
+
+// server confirming that it is listening on the specified port
+app.listen(PORT, () => {
+    console.log(`server listening on ${PORT}`)
+});
