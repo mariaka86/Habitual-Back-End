@@ -24,6 +24,14 @@ const PORT = process.env.PORT;
 mongoose.connect(process.env.MONGO_URL);
 const db = mongoose.connection;
 
+db.on('error', (err) =>{
+	console.error(`DB ERROR: ${err}`)
+})
+
+db.once('open', () => {
+	console.log(`Connected to the database`);
+})
+
 app.get('/', (req, res) => {
 	res.status(200).json('success!');
 });
