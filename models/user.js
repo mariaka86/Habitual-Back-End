@@ -4,7 +4,7 @@
  */
 
 // importing required packages
-import mongoose from 'mongoose';
+const mongoose =  require('mongoose');
 const { Schema } = mongoose;
 
 // Defining the schema for a user
