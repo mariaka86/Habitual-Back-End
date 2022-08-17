@@ -11,6 +11,9 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 
+//importing the Data module so we can route requests to the methods in Data.js
+const Data = require('./routes/Data');
+
 //telling our app to use express
 const app = express();
 
