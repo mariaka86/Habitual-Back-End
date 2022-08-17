@@ -11,6 +11,9 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 
+//importing the Data module so we can route requests to the methods in Data.js
+const Data = require('./routes/Data');
+
 //telling our app to use express
 const app = express();
 
@@ -31,6 +34,8 @@ db.on('error', (err) =>{
 db.once('open', () => {
 	console.log(`Connected to the database`);
 })
+
+app.get('/user', Data.getUser);
 
 app.get('/', (req, res) => {
 	res.status(200).json('success!');
