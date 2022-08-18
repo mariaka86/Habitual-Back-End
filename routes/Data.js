@@ -17,11 +17,17 @@ const Data = {};
  */
 Data.getHabits = async (req, res) => {
     try {
-        const userToken = {};
-        if (req.query.userToken) {
-        }
+        // let habitQuery = req.query.params
+        console.log(`request for habits...`);
+
+        let allHabits = await userModel.find({});
+        console.log(`GET request successful, returning ${allHabits}`)
+        res.status(200).json(allHabits);
+
+
     } catch (err) {
         res.send(err);
     }
 }
 
+module.exports = Data;

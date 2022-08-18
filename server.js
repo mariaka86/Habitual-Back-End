@@ -37,9 +37,9 @@ db.once('open', () => {
 
 app.get('/habits', Data.getHabits);
 
-app.get('/', (req, res) => {
-	res.status(200).json('success!');
-});
+// app.get('/', (req, res) => {
+// 	res.status(200).json('success!');
+// });
 
 // server confirming that it is listening on the specified port
 app.listen(PORT, () => {
