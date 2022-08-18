@@ -35,7 +35,10 @@ db.once('open', () => {
 	console.log(`Connected to the database`);
 })
 
+// route for grabbing all habits
 app.get('/habits', Data.getHabits);
+// route for adding a new habit
+app.post('/habits/add', Data.addHabit);
 
 // app.get('/', (req, res) => {
 // 	res.status(200).json('success!');

@@ -21,7 +21,7 @@ Data.getHabits = async (req, res) => {
         console.log(`request for habits...`);
 
         let allHabits = await userModel.find({});
-        console.log(`GET request successful, returning ${allHabits}`)
+        console.log(`GET request successful, returning ${allHabits}`);
         res.status(200).json(allHabits);
 
 
@@ -29,5 +29,30 @@ Data.getHabits = async (req, res) => {
         res.send(err);
     }
 }
+
+Data.addHabit = async (req, res) => {
+    try {
+        let newHabit = req.body;
+        console.log(`new habit document: ${JSON.stringify(req.body)}`);
+        console.log(`POST request for habits`);
+
+        console.log(req.body._id);
+        await userModel.findById(req.params._id, res.habits.push(newHabit))
+        .then((res) => {
+            console.log(`user found!`);
+            
+
+        }).catch((err) => {
+            console.error(err);
+            res.send(console.error(err));
+        });
+
+        
+
+    } catch (err) {
+        console.error(err);
+        res.send(console.error(err));
+    }
+};
 
 module.exports = Data;
