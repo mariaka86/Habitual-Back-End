@@ -35,7 +35,7 @@ db.once('open', () => {
 	console.log(`Connected to the database`);
 })
 
-app.get('/user', Data.getUser);
+app.get('/habits', Data.getHabits);
 
 app.get('/', (req, res) => {
 	res.status(200).json('success!');
