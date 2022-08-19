@@ -35,11 +35,14 @@ db.once('open', () => {
 	console.log(`Connected to the database`);
 })
 
-app.get('/user', Data.getUser);
+// route for grabbing all habits
+app.get('/habits', Data.getHabits);
+// route for adding a new habit
+app.post('/habits/add', Data.addHabit);
 
-app.get('/', (req, res) => {
-	res.status(200).json('success!');
-});
+// app.get('/', (req, res) => {
+// 	res.status(200).json('success!');
+// });
 
 // server confirming that it is listening on the specified port
 app.listen(PORT, () => {
