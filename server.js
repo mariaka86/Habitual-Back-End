@@ -40,9 +40,11 @@ app.get('/habits', Data.getHabits);
 // route for adding a new habit
 app.post('/habits/add', Data.addHabit);
 
-// app.get('/', (req, res) => {
-// 	res.status(200).json('success!');
-// });
+app.delete('/habits/delete', Data.deleteHabit);
+
+app.get('/', (req, res) => {
+	res.status(200).json('success!');
+});
 
 // server confirming that it is listening on the specified port
 app.listen(PORT, () => {
