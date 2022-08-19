@@ -17,10 +17,10 @@ const Data = {};
  */
 Data.getHabits = async (req, res) => {
     try {
-        // let habitQuery = req.query.params
         console.log(`request for habits...`);
 
-        let allHabits = await userModel.find({});
+        //* finding all of the documents in the database (in this case there is only one user)
+        let allHabits = await userModel.find({}); 
         console.log(`GET request successful, returning ${allHabits}`);
         res.status(200).json(allHabits);
 
@@ -30,24 +30,26 @@ Data.getHabits = async (req, res) => {
     }
 }
 
+/**
+ * 
+ * @param {object} req our habit object coming from the form submission on the client
+ * @param {string} res sending a confirmation message to the client
+ */
 Data.addHabit = async (req, res) => {
     try {
-        let newHabit = req.body;
+
         console.log(`new habit document: ${JSON.stringify(req.body)}`);
         console.log(`POST request for habits`);
+        console.log(req.body);
 
-        console.log(req.body._id);
-        await userModel.findById(req.params._id, res.habits.push(newHabit))
-        .then((res) => {
-            console.log(`user found!`);
-            
-
-        }).catch((err) => {
-            console.error(err);
-            res.send(console.error(err));
+        let user = await userModel.findById(req.body._id) //* finding the user docuemnt with their id
+        let newHabit = req.body; //* this is the habit object we are going to push
+        await user.habits.push(newHabit) //* pushing our new habit in to the document.habits array
+        await user.save(() => {         //* saving our document 
+            console.log('document saved');
         });
 
-        
+        res.status(200).send('Successfully added habit'); //* sending an OK to the client
 
     } catch (err) {
         console.error(err);
